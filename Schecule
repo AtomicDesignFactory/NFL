@@ -1,0 +1,3140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NFL Schedule</title>
+    <style>
+        #header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #header img {
+            height: 50px;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0;
+            box-sizing: border-box;
+        }
+
+        #results-container div {
+            margin: 10px 0;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .team-logo {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .match-info {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img src="https://content.sportslogos.net/logos/7/1007/full/dwuw5lojnwsj12vfe0hfa6z47.gif" alt="NFL Logo">
+        <h1>NFL Schedule</h1>
+    </div>
+
+    <input id="search-input" type="text" placeholder="Search...">
+
+    <div id="results-container"></div>
+
+    <script>
+        let data = [
+ {
+   "Week Number": "1",
+   "Date": "Thursday, September 7, 2023",
+   "Time": "8:20 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "4:25 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "4:25 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "4:25 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "4:25 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "4:25 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Sunday, September 10, 2023",
+   "Time": "8:20 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "1",
+   "Date": "Monday, September 11, 2023",
+   "Time": "8:15 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Thursday, September 14, 2023",
+   "Time": "8:15PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "4:05 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "4:05 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "4:25 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "4:25 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Sunday, September 17, 2023",
+   "Time": "8:20 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Monday, September 18, 2023",
+   "Time": "7:15 PM",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "2",
+   "Date": "Monday, September 18, 2023",
+   "Time": "8:15 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "ABC"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Monday, September 25, 2023",
+   "Time": "8:15 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2023",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2024",
+   "Time": "1:00 PM",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2025",
+   "Time": "1:00 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2026",
+   "Time": "1:00 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2027",
+   "Time": "1:00 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2028",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2029",
+   "Time": "1:00 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2030",
+   "Time": "1:00 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2031",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2032",
+   "Time": "4:05 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2033",
+   "Time": "4:25 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2034",
+   "Time": "4:25 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2035",
+   "Time": "8:20 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Sunday, September 24, 2036",
+   "Time": "7:15 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "ABC"
+ },
+ {
+   "Week Number": "3",
+   "Date": "Thursday, September 21, 2023",
+   "Time": "8:15 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Monday, October 2, 2023",
+   "Time": "8:15 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2023",
+   "Time": "9:30 AM",
+   "Location": "Wembley Stadium, London",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "ESPN+"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2024",
+   "Time": "1:00 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2025",
+   "Time": "1:00 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2026",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2027",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2028",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2029",
+   "Time": "1:00 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2030",
+   "Time": "1:00 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2031",
+   "Time": "1:00 PM",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2032",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2033",
+   "Time": "4:05 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2034",
+   "Time": "4:25 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2035",
+   "Time": "4:25 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Sunday, October 1, 2036",
+   "Time": "8:20 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "4",
+   "Date": "Thursday, September 28, 2023",
+   "Time": "8:15 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Monday, October 9, 2023",
+   "Time": "8:15 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2023",
+   "Time": "9:30 AM",
+   "Location": "Tottenham Hotspur Stadium, London",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "NFL NET"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2024",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2025",
+   "Time": "1:00 PM",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2026",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2027",
+   "Time": "1:00 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2028",
+   "Time": "1:00 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2029",
+   "Time": "1:00 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2030",
+   "Time": "4:05 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2031",
+   "Time": "4:05 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2032",
+   "Time": "4:25 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2033",
+   "Time": "4:25 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Sunday, October 8, 2034",
+   "Time": "8:20 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "5",
+   "Date": "Thursday, October 5, 2023",
+   "Time": "8:15 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Monday, October 16, 2023",
+   "Time": "8:15 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2023",
+   "Time": "9:30 AM",
+   "Location": "Tottenham Hotspur Stadium, London",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "NFL NET"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2024",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2025",
+   "Time": "1:00 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2026",
+   "Time": "1:00 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2027",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2028",
+   "Time": "1:00 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2029",
+   "Time": "1:00 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2030",
+   "Time": "1:00 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2031",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2032",
+   "Time": "4:05 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2033",
+   "Time": "4:25 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2034",
+   "Time": "4:25 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Sunday, October 15, 2035",
+   "Time": "8:20 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "6",
+   "Date": "Thursday, October 12, 2023",
+   "Time": "8:15 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Monday, October 23, 2023",
+   "Time": "8:15 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2023",
+   "Time": "1:00 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2024",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2025",
+   "Time": "1:00 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2026",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2027",
+   "Time": "1:00 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2028",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2029",
+   "Time": "4:05 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2030",
+   "Time": "4:05 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2031",
+   "Time": "4:25 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2032",
+   "Time": "4:25 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Sunday, October 22, 2033",
+   "Time": "8:20 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "7",
+   "Date": "Thursday, October 19, 2023",
+   "Time": "8:15 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Monday, October 30, 2023",
+   "Time": "8:15 PM",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2023",
+   "Time": "1:00 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2024",
+   "Time": "1:00 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2025",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2026",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2027",
+   "Time": "1:00 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2028",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2029",
+   "Time": "1:00 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2030",
+   "Time": "1:00 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2031",
+   "Time": "1:00 PM",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2032",
+   "Time": "4:05 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2033",
+   "Time": "4:25 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2034",
+   "Time": "4:25 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2035",
+   "Time": "4:25 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Sunday, October 29, 2036",
+   "Time": "8:20 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "8",
+   "Date": "Thursday, October 26, 2023",
+   "Time": "8:15 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Monday, November 6, 2023",
+   "Time": "8:15 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2023",
+   "Time": "9:30 AM",
+   "Location": "Frankfurt Stadium, Frankfurt",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "NFL NET"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2024",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2025",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2026",
+   "Time": "1:00 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2027",
+   "Time": "1:00 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2028",
+   "Time": "1:00 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2029",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2030",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2031",
+   "Time": "4:05 PM",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2032",
+   "Time": "4:25 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2033",
+   "Time": "4:25 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Sunday, November 5, 2034",
+   "Time": "8:20 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "9",
+   "Date": "Thursday, November 2, 2023",
+   "Time": "8:15 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Monday, November 13, 2023",
+   "Time": "8:15 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2023",
+   "Time": "9:30 AM",
+   "Location": "Frankfurt Stadium, Frankfurt",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "NFL NET"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2024",
+   "Time": "1:00 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2025",
+   "Time": "1:00 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2026",
+   "Time": "1:00 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2027",
+   "Time": "1:00 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2028",
+   "Time": "1:00 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2029",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2030",
+   "Time": "4:05 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2031",
+   "Time": "4:05 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2032",
+   "Time": "4:25 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2033",
+   "Time": "4:25 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Sunday, November 12, 2034",
+   "Time": "8:20 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "10",
+   "Date": "Thursday, November 9, 2023",
+   "Time": "8:15 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Monday, November 20, 2024",
+   "Time": "8:15 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2023",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2024",
+   "Time": "1:00 PM",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2025",
+   "Time": "1:00 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2026",
+   "Time": "1:00 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2027",
+   "Time": "1:00 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2028",
+   "Time": "1:00 PM",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2029",
+   "Time": "1:00 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2030",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2031",
+   "Time": "4:05 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2032",
+   "Time": "4:25 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2033",
+   "Time": "4:25 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Sunday, November 19, 2034",
+   "Time": "8:20 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "11",
+   "Date": "Thursday, November 16, 2023",
+   "Time": "8:15 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Friday, November 24, 2023",
+   "Time": "3:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Monday, November 27, 2023",
+   "Time": "8:15 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2023",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2024",
+   "Time": "1:00 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2025",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2026",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2027",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2028",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2029",
+   "Time": "4:05 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2030",
+   "Time": "4:05 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2031",
+   "Time": "4:25 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2032",
+   "Time": "4:25 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Sunday, November 26, 2033",
+   "Time": "8:20 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Thursday, November 23, 2023",
+   "Time": "12:30 PM",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Thursday, November 23, 2024",
+   "Time": "4:30 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "12",
+   "Date": "Thursday, November 23, 2025",
+   "Time": "8:20 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Monday, December 4, 2023",
+   "Time": "8:15 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2023",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2024",
+   "Time": "1:00 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2025",
+   "Time": "1:00 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2026",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2027",
+   "Time": "1:00 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2028",
+   "Time": "1:00 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2029",
+   "Time": "1:00 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2030",
+   "Time": "4:05 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2031",
+   "Time": "4:25 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2032",
+   "Time": "4:25 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Sunday, December 3, 2033",
+   "Time": "8:20 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "13",
+   "Date": "Thursday, November 30, 2023",
+   "Time": "8:15 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Monday, December 11, 2023",
+   "Time": "8:15 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Monday, December 11, 2024",
+   "Time": "8:15 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "ABC"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2023",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2024",
+   "Time": "1:00 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2025",
+   "Time": "1:00 PM",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2026",
+   "Time": "1:00 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2027",
+   "Time": "1:00 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2028",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2029",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2030",
+   "Time": "4:05 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2031",
+   "Time": "4:05 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2032",
+   "Time": "4:25 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2033",
+   "Time": "4:25 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Sunday, December 10, 2034",
+   "Time": "8:20 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "14",
+   "Date": "Thursday, December 7, 2023",
+   "Time": "8:15 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Monday, December 18, 2023",
+   "Time": "8:15 PM",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2023",
+   "Time": "TBD",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2024",
+   "Time": "TBD",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2025",
+   "Time": "TBD",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2026",
+   "Time": "TBD",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2027",
+   "Time": "TBD",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2028",
+   "Time": "1:00 PM",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2029",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2030",
+   "Time": "1:00 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2031",
+   "Time": "1:00 PM",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2032",
+   "Time": "4:05 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2033",
+   "Time": "4:05 PM",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2034",
+   "Time": "4:25 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2035",
+   "Time": "4:25 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Sunday, December 17, 2036",
+   "Time": "8:20 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "15",
+   "Date": "Thursday, December 14, 2023",
+   "Time": "8:15 PM",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Monday, December 25, 2023",
+   "Time": "1:00 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Monday, December 25, 2024",
+   "Time": "4:30 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Away Team": "New York Giants",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Monday, December 25, 2025",
+   "Time": "8:15 PM",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Away Team": "Baltimore",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "ABC"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Saturday, December 23, 2023",
+   "Time": "4:30 PM",
+   "Location": "Acrisure Stadium, Pittsburgh, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Home Team": "  @  Pittsburgh",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Saturday, December 23, 2024",
+   "Time": "8:00 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "Peacock"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2023",
+   "Time": "1:00 PM",
+   "Location": "Mercedes-Benz Stadium, Atlanta, GA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Away Team": "Indianapolis",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Home Team": "  @  Atlanta",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2024",
+   "Time": "1:00 PM",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2025",
+   "Time": "1:00 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2026",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Away Team": "Washington",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Home Team": "  @  New York Jets",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2027",
+   "Time": "1:00 PM",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2028",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2029",
+   "Time": "4:05 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2030",
+   "Time": "4:25 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2031",
+   "Time": "4:25 PM",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Sunday, December 24, 2032",
+   "Time": "8:15 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "NFL NET"
+ },
+ {
+   "Week Number": "16",
+   "Date": "Thursday, December 21, 2023",
+   "Time": "8:15 PM",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Home Team": "  @  Los Angeles Rams",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Saturday, December 30, 2023",
+   "Time": "8:15 PM",
+   "Location": "AT&T Stadium, Arlington, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Away Team": "Detroit",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Home Team": "  @  Dallas",
+   "TV": "ESPN"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2023",
+   "Time": "1:00 PM",
+   "Location": "Highmark Stadium, Orchard Park, NY",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Away Team": "New England",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Home Team": "  @  Buffalo",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2024",
+   "Time": "1:00 PM",
+   "Location": "Soldier Field, Chicago, IL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Home Team": "  @  Chicago",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2025",
+   "Time": "1:00 PM",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Away Team": "Las Vegas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2026",
+   "Time": "1:00 PM",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2027",
+   "Time": "1:00 PM",
+   "Location": "Lincoln Financial Field, Philadelphia, PA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Away Team": "Arizona",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Home Team": "  @  Philadelphia",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2028",
+   "Time": "1:00 PM",
+   "Location": "Raymond James Stadium, Tampa, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Away Team": "New Orleans",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Home Team": "  @  Tampa Bay",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2029",
+   "Time": "1:00 PM",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Away Team": "San Francisco",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2030",
+   "Time": "1:00 PM",
+   "Location": "TIAA Bank Field, Jacksonville, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Away Team": "Carolina",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Home Team": "  @  Jacksonville",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2031",
+   "Time": "1:00 PM",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Away Team": "Miami",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2032",
+   "Time": "1:00 PM",
+   "Location": "NRG Stadium, Houston, TX",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Away Team": "Tennessee",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Home Team": "  @  Houston",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2033",
+   "Time": "4:05 PM",
+   "Location": "Lumen Field, Seattle, WA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Home Team": "  @  Seattle",
+   "TV": "FOX"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2034",
+   "Time": "4:25 PM",
+   "Location": "Empower Field at Mile High, Denver, CO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Away Team": "Los Angeles Chargers",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Home Team": "  @  Denver",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2035",
+   "Time": "4:25 PM",
+   "Location": "GEHA Field at Arrowhead Stadium, Kansas City, MO",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Away Team": "Cincinnati",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Home Team": "  @  Kansas City",
+   "TV": "CBS"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Sunday, December 31, 2036",
+   "Time": "8:20 PM",
+   "Location": "U.S. Bank Stadium, Minneapolis, MN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Away Team": "Green Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Home Team": "  @  Minnesota",
+   "TV": "NBC"
+ },
+ {
+   "Week Number": "17",
+   "Date": "Thursday, December 28, 2023",
+   "Time": "8:15 PM",
+   "Location": "Cleveland Browns Stadium, Cleveland, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Home Team": "  @  Cleveland",
+   "TV": "PRIME VIDEO"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2024",
+   "Time": "TBD",
+   "Location": "Paycor Stadium, Cincinnati, OH",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/155/full/7855_cleveland_browns-primary-2015.png",
+   "Away Team": "Cleveland",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/154/full/cincinnati_bengals_logo_primary_2021_sportslogosnet-2049.png",
+   "Home Team": "  @  Cincinnati",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2025",
+   "Time": "TBD",
+   "Location": "Ford Field, Detroit, MI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/172/full/2704_minnesota_vikings-primary-20131.png",
+   "Away Team": "Minnesota",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/170/full/1398_detroit_lions-primary-2017.png",
+   "Home Team": "  @  Detroit",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2026",
+   "Time": "TBD",
+   "Location": "Lambeau Field, Green Bay, WI",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/169/full/364.png",
+   "Away Team": "Chicago",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/171/full/dcy03myfhffbki5d7il3.png",
+   "Home Team": "  @  Green Bay",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2027",
+   "Time": "TBD",
+   "Location": "Nissan Stadium, Nashville, TN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/159/full/8856_jacksonville_jaguars-alternate-2013.png",
+   "Away Team": "Jacksonville",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/160/full/1053.png",
+   "Home Team": "  @  Tennessee",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2028",
+   "Time": "TBD",
+   "Location": "Lucas Oil Stadium, Indianapolis, IN",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/157/full/houston_texans_logo_primary_20029725.png",
+   "Away Team": "Houston",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/158/full/indianapolis_colts_logo_primary_20043652.png",
+   "Home Team": "  @  Indianapolis",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2029",
+   "Time": "TBD",
+   "Location": "Allegiant Stadium, Las Vegas, NV",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/161/full/9ebzja2zfeigaziee8y605aqp.png",
+   "Away Team": "Denver",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6708/full/8521_las_vegas_raiders-primary-20201.png",
+   "Home Team": "  @  Las Vegas",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2030",
+   "Time": "TBD",
+   "Location": "Hard Rock Stadium, Miami Gardens, FL",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/149/full/n0fd1z6xmhigb0eej3323ebwq.png",
+   "Away Team": "Buffalo",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/150/full/7306_miami_dolphins-primary-2018.png",
+   "Home Team": "  @  Miami",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2031",
+   "Time": "TBD",
+   "Location": "Gillette Stadium, Foxboro, MA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/152/thumbs/15291162019.gif",
+   "Away Team": "New York Jets",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/151/full/new_england_patriots_logo_primary_20005480.png",
+   "Home Team": "  @  New England",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2032",
+   "Time": "TBD",
+   "Location": "Caesars Superdome, New Orleans, LA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/173/full/299.png",
+   "Away Team": "Atlanta",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/175/full/907.png",
+   "Home Team": "  @  New Orleans",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2033",
+   "Time": "TBD",
+   "Location": "MetLife Stadium, East Rutherford, NJ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/167/full/philadelphia_eagles_logo_primary_19964867.png",
+   "Away Team": "Philadelphia",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/166/full/new_york_giants_logo_primary_20005208.png",
+   "Home Team": "  @  New York Giants",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2034",
+   "Time": "TBD",
+   "Location": "State Farm Stadium, Glendale, AZ",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/180/full/pfiobtreaq7j0pzvadktsc6jv.png",
+   "Away Team": "Seattle",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/177/full/arizona_cardinals_logo_primary_20058304.png",
+   "Home Team": "  @  Arizona",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2035",
+   "Time": "TBD",
+   "Location": "SoFi Stadium, Inglewood, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/162/full/857.png",
+   "Away Team": "Kansas City",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6446/full/1660_los_angeles__chargers-primary-20201.png",
+   "Home Team": "  @  Los Angeles Chargers",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2036",
+   "Time": "TBD",
+   "Location": "Levi's Stadium, Santa Clara, CA",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/5941/full/8334_los_angeles_rams-primary-20201.png",
+   "Away Team": "Los Angeles Rams",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/179/full/9455_san_francisco_49ers-primary-2009.png",
+   "Home Team": "  @  San Francisco",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2037",
+   "Time": "TBD",
+   "Location": "FedExField, Landover, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/165/full/406.png",
+   "Away Team": "Dallas",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/6832/full/washington_commanders_logo_primary_20228587.png",
+   "Home Team": "  @  Washington",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2038",
+   "Time": "TBD",
+   "Location": "Bank of America Stadium, Charlotte, NC",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/176/full/8363_tampa_bay_buccaneers-primary-2020.png",
+   "Away Team": "Tampa Bay",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/174/full/f1wggq2k8ql88fe33jzhw641u.png",
+   "Home Team": "  @  Carolina",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "18",
+   "Date": "Sunday, January 7, 2039",
+   "Time": "TBD",
+   "Location": "M&T Bank Stadium, Baltimore, MD",
+   "Away Team Logo": "https://content.sportslogos.net/logos/7/156/full/970.png",
+   "Away Team": "Pittsburgh",
+   "Home Team Logo": "https://content.sportslogos.net/logos/7/153/full/318.png",
+   "Home Team": "  @  Baltimore",
+   "TV": "TBD"
+ },
+ {
+   "Week Number": "",
+   "Date": "",
+   "Time": "",
+   "Location": "",
+   "Away Team Logo": "",
+   "Away Team": "",
+   "Home Team Logo": "",
+   "Home Team": "",
+   "TV": ""
+ },
+ {
+   "Week Number": "",
+   "Date": "",
+   "Time": "",
+   "Location": "",
+   "Away Team Logo": "",
+   "Away Team": "",
+   "Home Team Logo": "",
+   "Home Team": "",
+   "TV": ""
+ },
+ {
+   "Week Number": "NFL Logo",
+   "Date": "https://content.sportslogos.net/logos/7/1007/full/dwuw5lojnwsj12vfe0hfa6z47.gif",
+   "Time": "",
+   "Location": "",
+   "Away Team Logo": "",
+   "Away Team": "",
+   "Home Team Logo": "",
+   "Home Team": "",
+   "TV": ""
+ }
+]
+     let searchInput = document.getElementById('search-input');
+        let resultsContainer = document.getElementById('results-container');
+
+        function loadSchedule(week) {
+          let filteredData = data.filter(item => item["Week Number"] === week);
+
+          // Clear the results container and add the filtered results to it
+          resultsContainer.innerHTML = '';
+
+          // Add headers
+          let headers = document.createElement('div');
+          headers.innerHTML = `
+            <strong>
+              <div>Week</div>
+              <div>Date</div>
+              <div>Time</div>
+              <div>Away Team</div>
+              <div>Home Team</div>
+            </strong>
+          `;
+          resultsContainer.appendChild(headers);
+
+          // Add data
+          filteredData.forEach(item => {
+            let result = document.createElement('div');
+
+            let awayTeamLogo = document.createElement('img');
+            awayTeamLogo.src = item["Away Team Logo"];
+            awayTeamLogo.classList.add('team-logo');
+            result.appendChild(awayTeamLogo);
+
+            let matchInfo = document.createElement('div');
+            matchInfo.classList.add('match-info');
+            matchInfo.innerHTML = `
+              <div>${item["Week Number"]}</div>
+              <div>${item["Date"]}</div>
+              <div>${item["Time"]}</div>
+              <div>${item["Away Team"]}</div>
+              <div>${item["Home Team"]}</div>
+            `;
+            result.appendChild(matchInfo);
+
+            let homeTeamLogo = document.createElement('img');
+            homeTeamLogo.src = item["Home Team Logo"];
+            homeTeamLogo.classList.add('team-logo');
+            result.appendChild(homeTeamLogo);
+
+            resultsContainer.appendChild(result);
+          });
+        }
+
+        // Attach an input event listener to your search input
+        searchInput.addEventListener('input', function(e) {
+          let searchValue = e.target.value; // Get the current search value
+          loadSchedule(searchValue);
+        });
+
+        // Autoload Week 1 schedule
+        loadSchedule("1");
+    </script>
+</body>
+</html>
